@@ -1,6 +1,9 @@
+import useNote from "../hooks/useNote";
 import { showFormattedDate } from "../utils";
 
 export default function NoteItem({ data }) {
+  const { deleteNote } = useNote();
+
   return (
     <div className="note-item">
       <div className="note-item__content">
@@ -9,7 +12,13 @@ export default function NoteItem({ data }) {
         <p className="note-item__body">{data.body}</p>
       </div>
       <div className="note-item__action">
-        <button className="note-item__delete-button">Delete</button>
+        <button
+          type="button"
+          onClick={() => deleteNote(data.id)}
+          className="note-item__delete-button"
+        >
+          Delete
+        </button>
         <button className="note-item__archive-button">Arsipkan</button>
       </div>
     </div>
