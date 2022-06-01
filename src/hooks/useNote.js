@@ -5,6 +5,17 @@ export default function useNote() {
   const { notes } = state;
   const { setNotes } = dispatch;
 
+  function addNote(title, body) {
+    const data = {
+      id: Date.now(),
+      title,
+      body,
+      createdAt: new Date().toISOString(),
+      archived: false,
+    };
+    setNotes([...notes, data]);
+  }
+
   function deleteNote(id) {
     const filtered = notes.filter((note) => note.id !== id);
     setNotes(filtered);
@@ -16,5 +27,5 @@ export default function useNote() {
     setNotes([...notes]);
   }
 
-  return { notes, deleteNote, toggleStatus };
+  return { notes, deleteNote, toggleStatus, addNote };
 }
