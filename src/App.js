@@ -1,7 +1,6 @@
-import ActiveNote from "./components/ActiveNote";
-import ArchivedNote from "./components/ArchivedNote";
 import Header from "./components/Header";
 import NoteInput from "./components/NoteInput";
+import NotesList from "./components/NotesList";
 import { getInitialData } from "./utils";
 
 const App = () => {
@@ -11,8 +10,8 @@ const App = () => {
       <Header />
       <main className="note-app__body">
         <NoteInput />
-        <ActiveNote data={initialData} />
-        <ArchivedNote data={initialData} />
+        <NotesList data={initialData} title="Catatan Aktif" />
+        <NotesList data={initialData} title="Arsip" />
       </main>
     </>
   );
