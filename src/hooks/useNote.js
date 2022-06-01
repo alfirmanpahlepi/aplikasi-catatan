@@ -3,11 +3,10 @@ import useGlobalState from "./useGlobalState";
 
 export default function useNote() {
   const { state, dispatch } = useGlobalState();
-  const { notes } = state;
-  const { setNotes } = dispatch;
+  const { notes, search } = state;
+  const { setNotes, setSearch } = dispatch;
 
-  const [data, setData] = useState(notes);
-  const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
 
   function addNote(title, body) {
     const data = {
@@ -32,21 +31,25 @@ export default function useNote() {
   }
 
   useEffect(() => {
-    if (!search) return setData(notes);
+    setData(notes);
+  }, [notes]);
 
-    const query = search.toLowerCase();
-    const filtered = notes.filter((note) =>
-      note.title.toLowerCase().includes(query)
+  useEffect(() => {
+    if (!search) return setData(notes);
+    setData(
+      notes.filter((note) =>
+        note.title.toLowerCase().includes(search.toLowerCase())
+      )
     );
-    setData(filtered);
-  }, [search, notes]);
+  }, [notes, search]);
 
   return {
     notes: data,
+    setNotes,
     deleteNote,
     toggleStatus,
     addNote,
-    setSearch,
     search,
+    setSearch,
   };
 }

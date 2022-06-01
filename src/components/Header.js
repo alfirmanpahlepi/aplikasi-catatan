@@ -7,7 +7,7 @@ export default function Header() {
       <h1>Notes</h1>
       <div className="note-search">
         <input
-          type="text"
+          type="search"
           placeholder="Cari catatan ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}

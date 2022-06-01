@@ -15,7 +15,9 @@ export default function NotesList({ title }) {
       <h2>{title}</h2>
       <div className="notes-list">
         {filteredByStatus().length ? (
-          filteredByStatus().map((note) => <NoteItem key={note.id} data={note} />)
+          filteredByStatus().map((note) => (
+            <NoteItem key={note.id} data={note} />
+          ))
         ) : (
           <p className="notes-list__empty-message">Tidak ada catatan</p>
         )}
