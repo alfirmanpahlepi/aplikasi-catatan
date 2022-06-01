@@ -1,5 +1,3 @@
-// import { useState } from "react";
-// import { getInitialData } from "../utils";
 import useGlobalState from "./useGlobalState";
 
 export default function useNote() {
@@ -12,5 +10,11 @@ export default function useNote() {
     setNotes(filtered);
   }
 
-  return { notes, deleteNote };
+  function toggleStatus(id) {
+    const targetIndex = notes.findIndex((note) => note.id === id);
+    notes[targetIndex].archived = !notes[targetIndex].archived;
+    setNotes([...notes]);
+  }
+
+  return { notes, deleteNote, toggleStatus };
 }

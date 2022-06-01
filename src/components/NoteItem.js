@@ -2,7 +2,7 @@ import useNote from "../hooks/useNote";
 import { showFormattedDate } from "../utils";
 
 export default function NoteItem({ data }) {
-  const { deleteNote } = useNote();
+  const { deleteNote, toggleStatus } = useNote();
 
   return (
     <div className="note-item">
@@ -19,7 +19,13 @@ export default function NoteItem({ data }) {
         >
           Delete
         </button>
-        <button className="note-item__archive-button">Arsipkan</button>
+        <button
+          type="button"
+          onClick={() => toggleStatus(data.id)}
+          className="note-item__archive-button"
+        >
+          {data.archived ? "Pindahkan" : "Arsipkan"}
+        </button>
       </div>
     </div>
   );
