@@ -11,7 +11,7 @@ export default function NotesList({ title }) {
   };
 
   return (
-    <section id="archived-note">
+    <section>
       <h2>{title}</h2>
       <div className="notes-list">
         {filteredByStatus().length ? (
